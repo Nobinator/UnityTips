@@ -68,5 +68,7 @@ public class OneWindow : EditorWindow{
 	
 	EditorPrefs
 	
+	bool isLevelEditorMode = EditorPrefs.GetBool("isLevelEdMode",true);
+	
 	*/
 }
