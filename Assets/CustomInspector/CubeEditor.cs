@@ -30,6 +30,8 @@ namespace CustomInspector{
 			
 			GUILayout.EndHorizontal();
 			
+			GUILayout.Label("BoldLabel", EditorStyles.boldLabel);
+			
 			cube.transform.localScale = Vector3.one * EditorGUILayout.Slider("Size",cube.transform.localScale.x, .1f, 2f);
 
 			cube.transform.rotation = Quaternion.Euler(
@@ -38,14 +40,6 @@ namespace CustomInspector{
 				EditorGUILayout.FloatField("Angle",cube.transform.rotation.eulerAngles.y),
 				0);
 			
-			GUILayout.Space(20);
-			
-			GUILayout.Label("Vertical box");
-			
-			GUILayout.BeginVertical("box");
-				GUILayout.Label("No interactive slider");
-				GUILayout.HorizontalSlider(.5f, 1, 2);
-			GUILayout.EndVertical();
 		}
 	}
 	

@@ -9,6 +9,7 @@ namespace CustomInspector{
 		
 		public void Reset(){
 			transform.rotation = Quaternion.identity;
+			transform.localScale = Vector3.one;
 		}
 
 	}
