@@ -2,16 +2,14 @@
 using UnityEngine;
 
 [CustomEditor(typeof(TargetScript))]
-class HandleExampleEditor : Editor
-{
-	protected virtual void OnSceneGUI()
-	{
+
+class HandleExampleEditor : Editor{
+	
+	protected virtual void OnSceneGUI(){
 		TargetScript handleExample = (TargetScript)target;
 
 		if (handleExample == null)
-		{
 			return;
-		}
 
 		Handles.color = Color.yellow;
 

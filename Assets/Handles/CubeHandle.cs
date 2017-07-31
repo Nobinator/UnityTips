@@ -6,7 +6,7 @@ using UnityEngine;
 // ReSharper disable Unity.InvalidStaticModifier
 
 //Атрибут, отвечающий за загрузку (вызов конструктора) текущего скрипта во время старта Unity или во время перекомпиляции 
-[InitializeOnLoad]
+//[InitializeOnLoad] // Т.е текущий Handle будет работать всегда и для всего, что нам не очень то нужно.
 public class CubeHandle : Editor {
 
 	/*
