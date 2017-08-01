@@ -7,7 +7,7 @@ public class CleverCubeEditor : Editor{
 	
 	// Переменные будут сбиваться постоянно после того, как будет убрано выделение
 	private bool forwardArrow = false;
-	private int handler = 12;
+	private int handler = 17;
 	private int maxhandler = 20;
 	
 	
@@ -55,7 +55,7 @@ public class CleverCubeEditor : Editor{
 			// Стрелка с палочкой
 			Handles.ArrowHandleCap(0, t.position + t.forward, t.rotation, .2f, EventType.Repaint);
 
-		} else if(handler == 1){
+		}else if(handler == 1){
 
 			// Handles.Button (Make a 3D Button)
 			if(Handles.Button(t.position + Vector3.up * 1.3f, t.rotation, .3f, .2f, Handles.RectangleHandleCap))
@@ -152,6 +152,7 @@ public class CleverCubeEditor : Editor{
 		} else if(handler == 9){
 
 			// Эта штука не рендерится, или я не вижу или не работает.
+			//https://docs.unity3d.com/ScriptReference/Handles.MakeBezierPoints.html
 			float width = HandleUtility.GetHandleSize(Vector3.zero) * 0.1f;
 			Handles.DrawBezier(t.position,
 				Vector3.zero,
@@ -198,16 +199,52 @@ public class CleverCubeEditor : Editor{
 			Handles.DrawLine(t.position, clv.second.transform.position);
 
 		} else if(handler == 13){
+			
+			clv.second.rotation = Handles.FreeRotateHandle(clv.second.rotation, clv.second.position, .5f);
+			
 		} else if(handler == 14){
-		} else if(handler == 15){
+			
+			Handles.Label(t.position + Vector3.up*1.2f,t.name+'\n'+t.tag);
+			
+			
+			// Handles.PositionHandle - как дефолтный Tools.Move
+			
+		}else if(handler == 15){
+			
+			clv.areaRadius = Handles.RadiusHandle(Quaternion.identity, t.transform.position, clv.areaRadius);
+			// Сдвинутый на 45 получается более плотная оболочка сферы 
+			//Handles.RadiusHandle(Quaternion.AngleAxis(45,Vector3.up), t.transform.position, clv.areaRadius);
+			
 		} else if(handler == 16){
+			// Графоуний. Без взаимодействий.
+			Handles.color = Handles.xAxisColor;
+			Handles.RectangleHandleCap(
+				0,
+				t.position + new Vector3(.25f, 0f, 0f),
+				t.rotation * Quaternion.LookRotation(Vector3.right),
+				.5f,
+				EventType.Repaint
+			);
+			
+			
+			// Handles.RotationHandle - как дефолтный Tools.Rotation
+			// Handles.ScaleHandle - тож
 		} else if(handler == 17){
+			// Одна палка от ScaleHandle
+			clv.scalar = Handles.ScaleSlider(clv.scalar, clv.transform.position, clv.transform.forward, clv.transform.rotation, 1f, 0);
+			
 		} else if(handler == 18){
+			// Тут я не совсем правильно юзаю (не технически, а по смыслу), тут юзается как слайдер, хотя есть отдельная реализация слайдера
+			clv.scalar = Handles.ScaleValueHandle(clv.scalar, t.position + t.forward*clv.scalar, t.rotation, 9f, Handles.ArrowHandleCap, 0);
+			
 		} else if(handler == 19){
-		} else if(handler == 20){
-		} else if(handler == 21){
-		} else if(handler == 22){
+			
+			clv.second.position = Handles.Slider(clv.second.position, Vector3.right,.3f, Handles.ConeHandleCap, 0);
+			
 		}
+		
+		// Там ещё всякого по мелочи есть, но оно всё работает по схожему принципу
+		// https://docs.unity3d.com/ScriptReference/Handles.html
 	}
 
 	public override void OnInspectorGUI(){
