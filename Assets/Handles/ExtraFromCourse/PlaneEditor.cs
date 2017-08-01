@@ -22,17 +22,10 @@ public class PlaneEditor : Editor{
 	}
 
 	private void OnSceneGUI(){
-		//PointMovement();
+		PointMovement();
 		//DrawOverlay();
-		
-		MatrixTests();
-
-		//Snapping();
+		//MatrixTests();
 	}
-
-	/*void Snapping(){
-		
-	}*/
 
 	void MatrixTests(){
 		
@@ -67,7 +60,8 @@ public class PlaneEditor : Editor{
 		// Такая фича позволяет сохранять размер элементов даже при изменении зума камеры сцена и прочего.
 		float size = HandleUtility.GetHandleSize(worldPoint);
 
-		worldPoint = Handles.FreeMoveHandle(worldPoint, Quaternion.identity, size * 0.1f, Vector3.zero, Handles.RectangleHandleCap);
+		// Vector3.one*0.25f - snapping - При зажатом Ctrl объект будет способен перемещаться только на заданные единицы расстояния
+		worldPoint = Handles.FreeMoveHandle(worldPoint, Quaternion.identity, size * 0.1f, Vector3.one*0.25f, Handles.RectangleHandleCap);
 		
 		
 		// обратное к transform.TransformPoint действие
