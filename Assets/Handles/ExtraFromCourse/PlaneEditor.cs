@@ -21,11 +21,29 @@ public class PlaneEditor : Editor{
 	}
 
 	private void OnSceneGUI(){
-		PointMovement();
+		//PointMovement();
+
+		DrawOverlay();
+
 	}
-	
-	
-	
+
+	void DrawOverlay(){
+		Handles.DrawLine(Vector3.zero, p.point);
+
+		Vector2 pos = HandleUtility.WorldToGUIPoint(p.point);
+		if(p.point.x < 0){
+			pos.x -= 100;
+		}
+		Vector2 size = new Vector2(100,50);
+		Rect screenRect = new Rect(pos.x,pos.y,size.x,size.y);
+		Handles.BeginGUI();
+		GUI.Box(screenRect,"Глобально точка тут");
+		Handles.EndGUI();
+		
+		
+		// Доп фича если вдруг пригодится GetWorldUnitsPerPixel(Camera.current)
+	}
+
 	void PointMovement(){
 		// transform.TransformPoint делает так, будто вектор - аргумент работает
 		// относительно текущего трансформа, применяя его позицию и поворот, а не мира.
