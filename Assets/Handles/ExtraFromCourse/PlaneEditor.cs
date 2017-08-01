@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+
 [CustomEditor(typeof(Plane))]
 public class PlaneEditor : Editor{
-	
+
 	private SerializedProperty pointProp;
 	private Plane p;
-	
+
 	private void OnEnable(){
 		p = (Plane) target;
 		//!//pointProp = serializedObject.FindProperty("point");
@@ -22,9 +23,22 @@ public class PlaneEditor : Editor{
 
 	private void OnSceneGUI(){
 		//PointMovement();
+		//DrawOverlay();
+		
+		MatrixTests();
 
-		DrawOverlay();
+		//Snapping();
+	}
 
+	/*void Snapping(){
+		
+	}*/
+
+	void MatrixTests(){
+		
+		// Handles и все элементы будут работать как Billboard
+		Handles.matrix = p.transform.localToWorldMatrix;
+		Handles.FreeMoveHandle(Vector3.zero, Quaternion.identity,0.1f, Vector3.zero, Handles.RectangleHandleCap);
 	}
 
 	void DrawOverlay(){
