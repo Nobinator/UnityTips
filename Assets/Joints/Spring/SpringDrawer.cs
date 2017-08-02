@@ -9,9 +9,9 @@ public class SpringDrawer : MonoBehaviour{
 		sjs = GetComponents<SpringJoint>();
 	}
 
-	void Update(){
+	/*void Update(){
 		foreach(var sj in sjs){
 			Debug.DrawLine(sj.anchor,sj.connectedAnchor,Color.cyan);
 		}
-	}
+	}*/
 }

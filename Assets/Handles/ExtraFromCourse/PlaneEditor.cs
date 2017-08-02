@@ -60,7 +60,7 @@ public class PlaneEditor : Editor{
 		// Такая фича позволяет сохранять размер элементов даже при изменении зума камеры сцена и прочего.
 		float size = HandleUtility.GetHandleSize(worldPoint);
 
-		// Vector3.one*0.25f - snapping - При зажатом Ctrl объект будет способен перемещаться только на заданные единицы расстояния
+		// Vector3.one*0.25f - snapping - При зажатом Ctrl объект будет способен перемещаться только на заданные единицы расстояни
 		worldPoint = Handles.FreeMoveHandle(worldPoint, Quaternion.identity, size * 0.1f, Vector3.one*0.25f, Handles.RectangleHandleCap);
 		
 		

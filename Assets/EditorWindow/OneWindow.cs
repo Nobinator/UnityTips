@@ -61,6 +61,9 @@ public class OneWindow : EditorWindow{
 				time = 0;
 			}
 		GUILayout.EndHorizontal();
+		
+		GUI.backgroundColor = Color.blue;
+		GUILayout.Button("X");
 	}
 
 

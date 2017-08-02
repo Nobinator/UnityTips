@@ -12,10 +12,29 @@ public class GenericContextMenuEditor : Editor{
 	
 	private void OnSceneGUI(){
 
+		/* 
+			Event.current предоставляет информацию о происходящих в пользовательском интерфейсе событиях
+			В частности Event.current.control возвращает true, если нажата клавиша Ctrl.
+			Event.current.mousePosition позволяет получить позицию мыши в пространстве GUI
+		*/
 
-		/*if(Event.current.control){
+		// выдает уникальный ID (зачем?)
+		int controlid = GUIUtility.GetControlID(FocusType.Passive);
+		Handles.SphereHandleCap(controlid, Vector3.zero, Quaternion.identity, 1f, EventType.Repaint);
+
+
+		var v = Event.current.GetTypeForControl(controlid);
+		Debug.Log(v);
+		if(v == EventType.ContextClick){
+			Debug.Log("Awesome");
+		}
+
+		Tools.current = Tool.None;
+
+
+		if(Event.current.control){
 			Debug.Log("HI");
-		}*/
+		}
 
 		//Handles.CircleHandleCap(GUIUtility.GetControlID(FocusType.Passive), Vector3.up, Quaternion.identity, 1f, EventType.Repaint);
 		

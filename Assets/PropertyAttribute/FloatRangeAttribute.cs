@@ -23,7 +23,8 @@ public class FloatRange{
 		return Random.Range(RangeStart, RangeEnd);
 	}
     
-    // Видимо этот оператор срабатывает всегда (?)
+    // Оператор вызывается при присваивании какому - то float 
+	// значения FloatRange, оно преобразуется по закону d.GetRandomValue();
 	public static implicit operator float(FloatRange d){  // implicit digit to byte conversion operator
 		return d.GetRandomValue();
 	}
